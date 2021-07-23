@@ -1,0 +1,21 @@
+// @React
+import React from 'react';
+
+// @Package
+import { Redirect, Route } from 'react-router-dom';
+
+const PrivateRoute = ({
+    isAuthenticated,
+    component: Component,
+    ...rest
+}) => {
+    return (
+        <Route {...rest}
+            component={(props) => (
+                isAuthenticated ? <Component {...props} /> : <Redirect to="/auth" />
+            )}
+        />
+    );
+};
+
+export default PrivateRoute;
